@@ -1,11 +1,19 @@
 
+import RoutesApp from './application/routes';
+import Footer from './components/footer/footer';
+import CookiesMessage from './components/cookiesMessage/cookiesMessage';
 
-function App() {
+const App = (_) => {
+
   return (
-    <div >
-      <p>chenji 2.0</p>
-    </div>
+    <>
+      <RoutesApp />
+      
+      <Footer />
+      <CookiesMessage />
+    </>
   );
+
 }
 
 export default App;
