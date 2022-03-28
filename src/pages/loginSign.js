@@ -1,15 +1,22 @@
 
 import Header from '../components/header/header';
-import { WrapperBig } from '../assets/styles/styles';
+import { WrapperContent } from '../assets/styles/styles';
 
 const LoginSign = (_) => {
 
   return (
     <>
       <Header />
-      <WrapperBig>
-        <p>Login Page</p>
-      </WrapperBig>
+      <WrapperContent>
+
+        <h2 className='t-t2'>Login</h2>
+        <a href="" className='btn'>Entrar</a>
+
+
+        <h2 className='t-t2'>Registrate</h2>
+        <a href="" className='btn'>Registrate</a>
+
+      </WrapperContent>
     </>
   );
 
