@@ -17,12 +17,13 @@ const Header = () => {
       <>
         <HeaderStyle>
           <div className='header__wrapp'>
-            <p>logo</p>
+            <Link to="/">logo</Link>
             <div className='header__menu' onClick={openMenu}></div>
           </div>
 
           <NavStyle showNav={showMess}>
             <Link to="/">Login</Link>
+            <Link to="/insertGame">-    Insert Game    -</Link>
             <Link to="/loginSignUp">Sign In</Link>
           </NavStyle>
 

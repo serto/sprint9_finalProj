@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CookiesMessageStyle = styled.div`
-  background-color: #666;
+  background-color: #3c3c3c;
   color: #FFF;
   position:fixed;
   bottom: 0;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderStyle = styled.header`
-  background-color: green;
+  background-color: #22AAB8;
   color: #FFF;
   position:fixed;
   top: 0;
