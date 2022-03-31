@@ -3,9 +3,8 @@ import firebase, { db } from './firebase';
 import {collection, getDocs, getDoc, query, doc,  addDoc, deleteDoc, updateDoc} from "firebase/firestore";
 
 // ALTA
-export const createNewUser = (nameUser, mail, password) => {
-
-  addDoc(collection(db, 'users'), { nameUser, mail, password });
+export const createNewUser = async (nameUser, mail, password) => {
+  return await addDoc(collection(db, 'users'), { nameUser, mail, password });
 };
 
 

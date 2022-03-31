@@ -11,7 +11,8 @@ const LoginSign = (_) => {
   const [nameNewUserPasw, setNameNewUserPasw] = useState(null);
 
   const createNewUer = () => {
-    createNewUser(nameNewUser, nameNewUserMail, nameNewUserPasw);
+    const resultInNewUser = createNewUser(nameNewUser, nameNewUserMail, nameNewUserPasw);
+    resultInNewUser.then(res => console.log(res))
   }
 
 

@@ -76,7 +76,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const WrapperBig = styled.div`
   width: 96%;
-  border: 1px solid red;
+  //border: 1px solid red;
   margin: 74px auto 60px;
   display: flex;
   flex-direction: column;

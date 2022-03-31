@@ -9,7 +9,6 @@ const Header = () => {
   const [showMess, setShowMess] = useState(false);
 
   const openMenu = () => {
-    console.log('piticlic');
     setShowMess(showMess ? false : true);
   }
 

@@ -11,9 +11,13 @@ const GameCard = (props) => {
   return (
       <GameCardStyle>
         <Link to='/' >
-          <h2>{game.name}</h2>
-          <img src={game.background_image} alt={game.name} />
-          <p>Metacritic: {game.metacritic}</p>
+          <div className='imgCard'>
+            <img src={game.background_image} alt={game.name} />
+          </div>
+          <div className='imgInfo'>
+            <h3>{game.name}</h3>
+            <p>Metacritic: {game.metacritic}</p>
+          </div>
         </Link>
       </GameCardStyle>
     );

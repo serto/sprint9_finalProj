@@ -16,7 +16,7 @@ const Home = (_) => {
   useEffect(() => {
     
     axios
-      .get(`https://rawg.io/api/games?key=908ba9b0ab584a93bdd76fc075ab143f`)
+      .get(`https://rawg.io/api/games?key=ab26bfc82b0b4c148f72b4dbbb5bc623`)
       .then((res) => {
         console.log(res.data.results);
         
