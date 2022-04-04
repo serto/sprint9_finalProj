@@ -17,7 +17,7 @@ const Header = () => {
       <>
         <HeaderStyle>
           <div className='header__wrapp'>
-            <Link to="/">logo</Link>
+            <Link to="/" className='linkLogo'></Link>
             
             <Search />
             

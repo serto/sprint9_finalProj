@@ -18,7 +18,7 @@ const Search = () => {
       <SearchStyle>
         <form>
           <input type='text' onChange={e => setSearchText(e.target.value)} placeholder='God of war, Tomb Raider ... ' />
-          <button onClick={searchInfo}>Buscar</button>
+          <button onClick={searchInfo}></button>
         </form>
       </SearchStyle> 
     );

@@ -50,6 +50,7 @@ export const GlobalStyle = createGlobalStyle`
 
     &:hover {
       opacity: 0.8;
+      cursor: pointer;
     }
   }
 
@@ -78,6 +79,23 @@ export const GlobalStyle = createGlobalStyle`
     ${tablet} {
       width: 48%;
     }
+  }
+
+  //
+  .centerContent {
+    text-align: center;
+  }
+  .imageLogoHome {
+    width: 70%;
+    margin: 0 auto;
+    max-width: 500px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .boxButtonActions {
+    margin-top: 32px;
   }
 
 `

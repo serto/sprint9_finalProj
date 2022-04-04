@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import logo from '../../assets/images/logo.png';
+
 
 export const HeaderStyle = styled.header`
   background-color: #22AAB8;
@@ -20,6 +22,15 @@ export const HeaderStyle = styled.header`
     width: 30px;
     height: 30px;
     border: 1px solid yellow;
+  }
+
+  .linkLogo {
+    text-indent: -9999px;
+    background: url(${logo});
+    background-size: cover;
+    display: block;
+    width: 80px;
+    height: 36px;
   }
 
 `
