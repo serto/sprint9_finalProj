@@ -50,8 +50,6 @@ export const GameCardStyle = styled.div`
       padding: 0;
     }
   }
-
-
 `
 
 export const GameCardWrapper = styled.div`
@@ -59,7 +57,8 @@ export const GameCardWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 48%);   
   grid-gap: 2%;
-  
+  margin-bottom: 32px;
+
   ${tablet} {
     grid-template-columns: repeat(4, 24%);  
     grid-gap: 1%;

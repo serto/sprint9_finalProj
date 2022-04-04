@@ -24,6 +24,15 @@ export const GlobalStyle = createGlobalStyle`
     text-transform: uppercase;
   }
 
+  .t-tSection {
+    margin: 32px 0 0 0;
+    font-size: 1rem;
+    padding: 0 0 4px 0;
+  }
+  .t-tText {
+    font-size: 0.9rem;
+  }
+
   //common button 
   .btn {
     display: inline-block;
@@ -71,13 +80,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-
 `
 
 export const WrapperBig = styled.div`
   width: 96%;
   //border: 1px solid red;
-  margin: 74px auto 60px;
+  margin: 84px auto 60px;
   display: flex;
   flex-direction: column;
 `;
