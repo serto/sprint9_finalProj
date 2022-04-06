@@ -12,7 +12,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-
   //FONTS
 
   .t-t1 {
@@ -51,6 +50,8 @@ export const GlobalStyle = createGlobalStyle`
     &:hover {
       opacity: 0.8;
       cursor: pointer;
+      border: none;
+      color: #FFF;
     }
   }
 
@@ -98,6 +99,22 @@ export const GlobalStyle = createGlobalStyle`
     margin-top: 32px;
   }
 
+  .storeGame {
+    margin: 0 0 8px 0;
+    padding: 0;
+    font-size: 0.9rem;
+
+  }
+
+  a {
+    text-decoration: none;
+    color: #22AAB8;
+
+    &:hover {
+      color: #D13688;
+      border-bottom: 1px solid #D13688;
+    }
+  }
 `
 
 export const WrapperBig = styled.div`

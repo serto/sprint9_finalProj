@@ -49,6 +49,16 @@ export const DetailGameStyle = styled.div`
           font-weight: bold;
         }
       }
+
+      a {
+        text-decoration: none;
+        color: #22AAB8;
+
+        &:hover {
+          color: #D13688;
+          border-bottom: 1px solid #D13688;
+        }
+      }
     }
   }
 

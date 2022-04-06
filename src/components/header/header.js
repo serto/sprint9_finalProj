@@ -1,13 +1,15 @@
 
-import React , {useState} from 'react';
+import React , {useState, useContext} from 'react';
 import { HeaderStyle, NavStyle } from './header.style';
 import Search from '../searcher/searcher';
+import { AppContext } from '../../application/provider';
 
 import { Link } from 'react-router-dom';
 
 const Header = () => {
 
   const [showMess, setShowMess] = useState(false);
+  const [state, setState] = useContext(AppContext);
 
   const openMenu = () => {
     setShowMess(showMess ? false : true);
@@ -15,7 +17,7 @@ const Header = () => {
 
   return (
       <>
-        <HeaderStyle>
+        <HeaderStyle showNav={showMess}>
           <div className='header__wrapp'>
             <Link to="/" className='linkLogo'></Link>
             
@@ -26,9 +28,17 @@ const Header = () => {
 
 
           <NavStyle showNav={showMess}>
-            <Link to="/">Login</Link>
-            <Link to="/insertGame">-    Insert Game    -</Link>
-            <Link to="/loginSignUp">Sign In</Link>
+            <Link to="/insertGame">Inserta Juego</Link>
+            { state ? 
+                <>
+                  <Link to="/">Área usuario</Link>
+                  <Link to="/">Logout</Link>
+                </>
+              : 
+                <>
+                  <Link to="/loginSignUp">Sign In</Link>
+                </>
+            }
           </NavStyle>
 
         </HeaderStyle>

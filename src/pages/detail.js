@@ -76,6 +76,8 @@ const Detail = (_) => {
 
           <DetailGameStyle >
 
+            <p><Link to="/">Back</Link></p>
+
             <div className='detail'>
 
               <div className='detail__image'>
@@ -105,7 +107,7 @@ const Detail = (_) => {
 
             <h3 className='t-tSection'>Tiendas :</h3>
             {
-              stores.map((store, key) => <p key={key}>{store.store.name} : <a href={store.store.domain} target="_blank" rel="noreferrer">{store.store.domain}</a></p>)
+              stores.map((store, key) => <p key={key} className='storeGame'>{store.store.name} : <a href={store.store.domain} target="_blank" rel="noreferrer">{store.store.domain}</a></p>)
             }
 
 
