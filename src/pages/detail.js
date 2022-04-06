@@ -6,6 +6,8 @@ import { Link, useParams } from 'react-router-dom';
 import { DetailGameStyle, TagStyle, TagGroupStyle } from '../components/detailGame/detailGame.style';
 import Loader from '../components/loader/loader';
 import ImageSlider from '@s-ui/react-image-slider';
+import { Api_Key } from "../application/api_key";
+import Footer from '../components/footer/footer';
 
 import axios from "axios";
 
@@ -28,7 +30,7 @@ const Detail = (_) => {
 
   useEffect(() => {
     axios
-      .get(`https://rawg.io/api/games/${slug}?key=ab26bfc82b0b4c148f72b4dbbb5bc623`)
+      .get(`https://rawg.io/api/games/${slug}?key=${Api_Key}`)
       .then((res) => {
         //console.log(res);
         console.log(res.data);
@@ -121,6 +123,7 @@ const Detail = (_) => {
         }
 
       </WrapperContent>
+      <Footer />
     </>
   );
 

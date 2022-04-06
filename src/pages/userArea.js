@@ -1,20 +1,18 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Header from '../components/header/header';
 import { WrapperBig } from '../assets/styles/styles';
 import Footer from '../components/footer/footer';
 
-import axios from "axios";
-
-const ErrorPage = () => {
+const UserArea = (_) => {
 
   return (
     <>
       <Header />
       <WrapperBig>
 
-        <h1>404. Aqui no hay na'</h1>
+        <h2>Área de usuario</h2>
 
       </WrapperBig>
       <Footer />
@@ -23,4 +21,4 @@ const ErrorPage = () => {
 
 }
 
-export default ErrorPage;
+export default UserArea;

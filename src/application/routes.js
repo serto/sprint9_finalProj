@@ -6,9 +6,11 @@ import { AppContext } from "./provider";
 import Home from '../pages/home';
 import LoginSign from '../pages/loginSign';
 import InsertGame from '../pages/insertGame';
+import UserArea from "../pages/userArea";
 import Detail from '../pages/detail';
 import Search from '../pages/search';
 import ErrorPage from "../pages/errorPage";
+import CookiesPage from "../pages/cookiesPage";
 
 const RoutesApp = () => {
 
@@ -33,9 +35,14 @@ const RoutesApp = () => {
           path="/insertGame" 
           element={ state ? ( <InsertGame /> ) : ( <Navigate replace to="/loginSignUp" /> ) }
         />
+        <Route 
+          path="/userArea" 
+          element={ state ? ( <UserArea /> ) : ( <Navigate replace to="/loginSignUp" /> ) }
+        />
         <Route path="/detail/:slug" element={<Detail /> } />
         <Route path="/search" element={<Search /> } />
         <Route path="/loginSignUp" element={<LoginSign/>} />
+        <Route path="/cookiesInfo" element={<CookiesPage/>} />
         <Route path="*" element={<ErrorPage /> } />
       </Routes>
     </BrowserRouter>

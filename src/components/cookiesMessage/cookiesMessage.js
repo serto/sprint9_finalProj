@@ -2,6 +2,8 @@
 import React , {useState} from 'react';
 import { CookiesMessageStyle } from './cookiesMessage.style';
 
+import { Link } from "react-router-dom";
+
 
 const CookiesMessage = () => {
 
@@ -17,8 +19,12 @@ const CookiesMessage = () => {
       <>
         { (showMess === 0) ? 
           <CookiesMessageStyle>
-            <p className="cookies__close" onClick={closeMessage}>X</p>
-            <p>Asereje ja de je, dejebe tu dejebe <a href=""  onClick={closeMessage}>aceptar</a> <a href="#">ver cookies</a></p>
+            <div className="cookies__close" onClick={closeMessage}>X</div>
+            <p>Mensaje de que usamos cookies</p>
+            <p>
+              <span onClick={closeMessage}>Aceptar cookies</span> 
+              <Link to="/cookiesInfo">Ver cookies</Link> 
+            </p>
           </CookiesMessageStyle>
         :
           ''

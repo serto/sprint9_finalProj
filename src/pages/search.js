@@ -3,20 +3,22 @@ import React, { useState, useEffect } from "react";
 
 import Header from '../components/header/header';
 import { WrapperBig } from '../assets/styles/styles';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import GameCard from "../components/gameCard/gameCard";
 import { GameCardWrapper  } from "../components/gameCard/gameCard.style";
 import Loader from '../components/loader/loader';
+import { Api_Key } from "../application/api_key";
+import Footer from '../components/footer/footer';
 
 import axios from "axios";
 
 const Search = (_) => {
 
-
   const [games, setGames] = useState([]);
   const [searchParams] = useSearchParams();
   const [searchTitle, setSearchTitle] = useState();
   const [nextGames, setNextGames] = useState();
+  const location = useLocation();
 
   const callNextGames = () => {
     axios
@@ -33,15 +35,15 @@ const Search = (_) => {
         (res.data.next) ? setNextGames(res.data.next) : setNextGames(null);
         
       });
-
   }
 
   useEffect(() => {
+    
     const search = searchParams.get('toSearch');
     setSearchTitle(search);
-    
+
     axios
-      .get(`https://rawg.io/api/games?key=ab26bfc82b0b4c148f72b4dbbb5bc623&search=${search}&search_precise=true`)
+      .get(`https://rawg.io/api/games?key=${Api_Key}&search=${search}&search_precise=true`)
       .then((res) => {
         //console.log(res.data.results);
         const videoGames = res.data.results;
@@ -51,8 +53,8 @@ const Search = (_) => {
         setNextGames(res.data.next)
 
       });
-  }, []);
 
+  }, [location.key]);
 
   useEffect(() => {
     
@@ -87,6 +89,7 @@ const Search = (_) => {
         }
 
       </WrapperBig>
+      <Footer />
     </>
   );
 

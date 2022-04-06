@@ -3,6 +3,7 @@ import { createNewGame } from '../application/api';
 
 import Header from '../components/header/header';
 import { WrapperContent } from '../assets/styles/styles';
+import Footer from '../components/footer/footer';
 
 const InsertGame = (_) => {
 
@@ -97,6 +98,7 @@ const InsertGame = (_) => {
 
 
       </WrapperContent>
+      <Footer />
     </>
   );
 

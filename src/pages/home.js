@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import { AppContext } from '../application/provider';
+import { Api_Key } from "../application/api_key";
 
 import { Link } from 'react-router-dom';
 import Header from '../components/header/header';
@@ -9,6 +10,7 @@ import { WrapperBig } from '../assets/styles/styles';
 import GameCard from "../components/gameCard/gameCard";
 import { GameCardWrapper  } from "../components/gameCard/gameCard.style";
 import logoHome from '../assets/images/logoHome.png';
+import Footer from '../components/footer/footer';
 
 import axios from "axios";
 
@@ -20,7 +22,7 @@ const Home = (_) => {
   useEffect(() => {
     
     axios
-      .get(`https://rawg.io/api/games?key=ab26bfc82b0b4c148f72b4dbbb5bc623`)
+      .get(`https://rawg.io/api/games?key=${Api_Key}`)
       .then((res) => {
         //console.log(res.data.results);
         const videoGames = res.data.results;
@@ -59,8 +61,8 @@ const Home = (_) => {
               <div className="boxButtonActions">
                 <p>Entra en el site y empieza a cambiar tus juegos</p>
                 <div>
-                  <Link to="/loginSingUp" className="btn">Log In</Link>
-                  <Link to="/loginSingUp" className="btn">Resgistrate</Link>
+                  <Link to="/loginSignUp" className="btn">Log In</Link>
+                  <Link to="/loginSignUp" className="btn">Resgistrate</Link>
                 </div>
               </div>
 
@@ -75,6 +77,7 @@ const Home = (_) => {
         </GameCardWrapper>
 
       </WrapperBig>
+      <Footer />
     </>
   );
 
