@@ -13,7 +13,7 @@ const InsertGame = (_) => {
   const [statusGame, setStatusGame] = useState(0);
   const [statusBox, setStatusBox] = useState(0);
 
-  const idUser = 'qbLVx0j0SBvu9Nv31aJI';
+  const idUser = 'XvwXEM0WQPMM3F2kUNdn';
 
   const createGame = (event) => {
     event.preventDefault();

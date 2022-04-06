@@ -7,6 +7,7 @@ import { createNewUser, LoginUser } from '../application/api';
 import Header from '../components/header/header';
 import { WrapperContent } from '../assets/styles/styles';
 import Footer from '../components/footer/footer';
+import { ErrorMessage } from '../components/errorsMessage/errorsMessage.style';
 
 const LoginSign = (_) => {
 
@@ -19,6 +20,7 @@ const LoginSign = (_) => {
   const [nameUserMail, setNameUserMail] = useState(null);
   const [nameUserPasw, setNameUserPasw] = useState(null);
   const [userLogged, setUserLogged] = useState(false);
+  const [errorLoggin, setErrorLoggin] = useState(false);
   const navigate = useNavigate();
 
   const createNewUer = () => {
@@ -26,7 +28,6 @@ const LoginSign = (_) => {
     resultInNewUser.then(res => {
       //console.log(res);
       localStorage.setItem('userChenjiLogged', JSON.stringify(true));
-      localStorage.setItem('userChenjiMail', newUserMail);
       setState(true);
 
       navigate(process.env.PUBLIC_URL + '/userArea');
@@ -41,33 +42,29 @@ const LoginSign = (_) => {
     console.log(nameUserPasw);
     const userInBBDD = LoginUser(nameUserMail, nameUserPasw);
 
-
-    
     userInBBDD.then(res => {
 
       let resultExist = 0;
 
       res.forEach((doc) => {
         resultExist = 1;
-        console.log('oli ', doc.data());
-        // doc.data() is never undefined for query doc snapshots
-        /* console.log(doc);
-        console.log(doc.id, "aaaaa => ", doc.data());
-        if(doc.id) { console.log('existe'); } else { console.log('no existe'); }
-        if(doc) { console.log('existe1'); } else { console.log('no existe1'); }
-        if(doc.data()) { console.log('existe2'); } else { console.log('no existe2'); }*/
+        const userInfo = doc.data();
+        
         localStorage.setItem('userChenjiLogged', JSON.stringify(true));
-        localStorage.setItem('userChenjiMail', nameUserMail);
-        localStorage.setItem('userChenjiId', doc.id);
+        localStorage.setItem('userChenjiId', JSON.stringify(doc.id));
+        localStorage.setItem('userChenjiMail', JSON.stringify(userInfo.mail));
+        localStorage.setItem('userChenjiName', JSON.stringify(userInfo.nameUser));
+        localStorage.setItem('userChenjiPassword', JSON.stringify(userInfo.password));
         setUserLogged(true);
         setState(true);
+        setErrorLoggin(false);
+
         navigate(process.env.PUBLIC_URL + '/userArea');
 
       });
 
-
-      if (resultExist === 0) {
-        console.log('no existe 3');
+      if (resultExist === 0) {//mail o password incorrectos 
+        setErrorLoggin(true);
       }
     }).catch(error => {
       console.log('error ', error);
@@ -93,6 +90,8 @@ const LoginSign = (_) => {
             <input type="password" onChange={e => setNameUserPasw(e.target.value)} placeholder="Password" />
           </div>
           <button onClick={loginUserSite} className='btn'>Entrar</button>
+
+          <ErrorMessage showMessage={errorLoggin}>Mail o password incorrectos</ErrorMessage>
         </div>
 
         <div className='boxFormSign'>

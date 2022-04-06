@@ -31,7 +31,7 @@ const Header = () => {
             <Link to="/insertGame">Inserta Juego</Link>
             { state ? 
                 <>
-                  <Link to="/">Área usuario</Link>
+                  <Link to="/userArea">Área usuario</Link>
                   <Link to="/">Logout</Link>
                 </>
               : 

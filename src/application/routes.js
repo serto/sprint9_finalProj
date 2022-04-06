@@ -36,6 +36,10 @@ const RoutesApp = () => {
           element={ state ? ( <InsertGame /> ) : ( <Navigate replace to="/loginSignUp" /> ) }
         />
         <Route 
+          path="/userAreaTest" 
+          element={ <UserArea />}
+        />
+        <Route 
           path="/userArea" 
           element={ state ? ( <UserArea /> ) : ( <Navigate replace to="/loginSignUp" /> ) }
         />

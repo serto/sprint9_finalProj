@@ -1,6 +1,7 @@
 
 import firebase, { db } from './firebase';
 import {collection, getDocs, getDoc, query, where, doc,  addDoc, deleteDoc, updateDoc} from "firebase/firestore";
+import { async } from '@firebase/util';
 
 // ALTA
 export const createNewUser = async (nameUser, mail, password) => {
@@ -13,7 +14,11 @@ export const LoginUser = async (mail, password) => {
   return await getDocs(consUser);
 };
 
-
+//TODOS LOS JUEGOS DE UN USUARIO
+export const getAllGamesOfUser = async (idUser) => {
+  const gamesUser = query(collection(db, 'games'), where("idUser", "==", idUser));
+  return await getDocs(gamesUser);
+};
 
 // NEW GAME
 export const createNewGame = (nameGame, namePlatfm, statusGame, statusBox, idUser) => {

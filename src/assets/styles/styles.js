@@ -53,6 +53,10 @@ export const GlobalStyle = createGlobalStyle`
       border: none;
       color: #FFF;
     }
+
+    &.btn__big {
+      width: auto;
+    }
   }
 
   //forms
@@ -128,11 +132,20 @@ export const WrapperBig = styled.div`
 export const WrapperContent = styled.div`
   width: 96%;
   max-width: 1080px;
-  margin: 74px auto 60px;
+  margin: 84px auto 60px;
   display: flex; 
   flex-direction: column;
 
   ${tablet} {
     flex-direction: row;
   }
+`;
+
+
+export const WrapperColumn = styled.div`
+  width: 96%;
+  max-width: 1080px;
+  margin: 84px auto 60px;
+  display: flex;
+  flex-direction: column;
 `;
