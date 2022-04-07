@@ -5,7 +5,7 @@ import { WrapperColumn } from '../assets/styles/styles';
 import Footer from '../components/footer/footer';
 import { getAllGamesOfUser } from '../application/api';
 import { Link } from 'react-router-dom';
-import { GameBox } from '../components/gameBox/gameBox';
+import GameBox from '../components/gameBox/gameBox';
 
 const UserArea = (_) => {
 
@@ -27,6 +27,7 @@ const UserArea = (_) => {
       });
       
       setGames(gamesArray);
+      console.log(gamesArray)
 
     }).catch(error => {
       console.log('error ', error);
@@ -50,9 +51,11 @@ const UserArea = (_) => {
 
         <div>
 
+          <h3>Tus juegos</h3>
+
           <Link to="/insertGame" className="btn btn__big">Inserta un nuevo juego</Link>
 
-          <h3>Tus juegos</h3>
+          <br /><br />
 
           { games.map((game, key) => <GameBox key={key} game={game} /> )}
 

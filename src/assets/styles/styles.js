@@ -57,6 +57,11 @@ export const GlobalStyle = createGlobalStyle`
     &.btn__big {
       width: auto;
     }
+
+    &.btn--danger {
+      margin: 0 0 2px 0;
+      background-color: #D1243D;
+    }
   }
 
   //forms
