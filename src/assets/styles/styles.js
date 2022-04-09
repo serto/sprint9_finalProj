@@ -146,11 +146,17 @@ export const WrapperContent = styled.div`
   }
 `;
 
-
 export const WrapperColumn = styled.div`
   width: 96%;
   max-width: 1080px;
   margin: 84px auto 60px;
   display: flex;
   flex-direction: column;
+`;
+
+export const WrapperFlex = styled.div`
+  display: flex;
+  justify-contente: space-between;
+  width: 100%;
+  margin: 12px 0;
 `;

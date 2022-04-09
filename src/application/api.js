@@ -21,7 +21,20 @@ export const getAllGamesOfUser = async (idUser) => {
 };
 
 // NEW GAME
-export const createNewGame = (nameGame, namePlatfm, statusGame, statusBox, idUser) => {
+export const createNewGame = (nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange) => {
+  addDoc(collection(db, 'games'), { nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange });
+};
 
-  addDoc(collection(db, 'games'), { nameGame, namePlatfm, statusGame, statusBox, idUser });
+// ELIMINAR JUEGO
+export const deleteGameUser = async (idGame) => {
+  console.log(idGame);
+  await deleteDoc(doc(db, 'games', idGame));
+};
+
+//TODOS LOS JUEGOS DE UN USUARIO
+export const getGameFromBBDD = async (name) => {
+  const arrayToSearch = [name];
+  console.log(arrayToSearch);
+  const games = query(collection(db, 'games'), where("nameGame", '==' , name));
+  return await getDocs(games);
 };

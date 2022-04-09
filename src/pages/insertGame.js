@@ -12,12 +12,14 @@ const InsertGame = (_) => {
   const [namePlatfm, setNamePlatfm] = useState(null);
   const [statusGame, setStatusGame] = useState(0);
   const [statusBox, setStatusBox] = useState(0);
+  const [gamesToChange, setGamesToChange] = useState(null);
 
   const idUser = 'XvwXEM0WQPMM3F2kUNdn';
 
   const createGame = (event) => {
     event.preventDefault();
-    createNewGame(nameGame, namePlatfm, statusGame, statusBox, idUser);
+    const nameInArray = [nameGame];
+    createNewGame(nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange);
   }
 
   return (
@@ -25,17 +27,16 @@ const InsertGame = (_) => {
       <Header />
       <WrapperContent>
 
-
         <form>
 
-          <h2 className='t-t2'>Inserta tu juego</h2>
+          <h2 className='t-t2'>Inserta tu juego para intercambiar</h2>
 
           <div>
             <label>Nombre del juego</label>
             <input
               type="text"
               onChange={e => setNameGame(e.target.value)}
-              placeholder="God of War, Fifa 18, Uncharted ..." />
+              placeholder="God of War, FIFA 20, Uncharted ..." />
           </div>
 
           <div>
@@ -44,6 +45,17 @@ const InsertGame = (_) => {
               type="text"
               onChange={e => setNamePlatfm(e.target.value)} 
               placeholder="Ps3, Ps4, Xbox, Snes ..." />
+          </div>
+
+          <div>
+            <label>Se cambia por:</label>
+
+            <input
+              type="text"
+              placeholder="FIFA 21, Tomb Raider ...."
+              onChange={e => setGamesToChange(e.target.value)}
+            />
+
           </div>
 
           <p>Por favor, Indica el estado del juego y la caja, siendo 10 el máximo y 0 el mínimo.  </p>
@@ -92,7 +104,8 @@ const InsertGame = (_) => {
             </select>
           </div>
 
-          <button onClick={createGame} className='btn'>Enter</button>
+          <br /> <br />
+          <button onClick={createGame} className='btn'>Nuevo juego</button>
 
         </form>
 

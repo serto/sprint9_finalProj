@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 
 import Header from '../components/header/header';
-import { WrapperContent } from '../assets/styles/styles';
+import { WrapperContent, WrapperFlex } from '../assets/styles/styles';
 import { Link, useParams } from 'react-router-dom';
 import { DetailGameStyle, TagStyle, TagGroupStyle } from '../components/detailGame/detailGame.style';
 import Loader from '../components/loader/loader';
 import ImageSlider from '@s-ui/react-image-slider';
 import { Api_Key } from "../application/api_key";
 import Footer from '../components/footer/footer';
+
+import { getGameFromBBDD } from '../application/api';
+import GameBoxInDetail from '../components/gameBox/gameBoxInDetail';
 
 import axios from "axios";
 
@@ -27,6 +30,7 @@ const Detail = (_) => {
   const [developers, setDevelopers] = useState([]);
   const [stores, setStores] = useState([]);
   const [tags, setTags] = useState([]);
+  const [gamesOfUsers, setGamesOfUsers] = useState([]);
 
   useEffect(() => {
     axios
@@ -66,6 +70,32 @@ const Detail = (_) => {
 
       });
   }, []);
+
+  useEffect(() => {
+
+    const gamesOfUsers = getGameFromBBDD(name);
+    const gamesArray = [];
+    
+    gamesOfUsers.then(res => {
+      console.log('aki estem');
+      res.forEach((doc) => {
+        const obj = {
+          id: doc.id,
+          game: doc.data()
+        }
+        
+        gamesArray.push(obj);
+      });
+      
+      setGamesOfUsers(gamesArray);
+      console.log(gamesArray)
+
+    }).catch(error => {
+      console.log('error ', error);
+    });
+
+  }, [name])
+
 
   return (
     <>
@@ -109,6 +139,12 @@ const Detail = (_) => {
             {
               stores.map((store, key) => <p key={key} className='storeGame'>{store.store.name} : <a href={store.store.domain} target="_blank" rel="noreferrer">{store.store.domain}</a></p>)
             }
+
+
+            <h3 className='t-tSection'>Juegos de usuarios:</h3>
+            <WrapperFlex>
+              { gamesOfUsers.map((game, key) => <GameBoxInDetail key={key} game={game} type="card" /> )}
+            </WrapperFlex>
 
 
             <h3 className='t-tSection'>Tags :</h3>

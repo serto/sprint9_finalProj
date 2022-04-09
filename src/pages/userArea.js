@@ -23,7 +23,12 @@ const UserArea = (_) => {
     games.then(res => {
 
       res.forEach((doc) => {
-        gamesArray.push(doc.data());
+        const obj = {
+          id: doc.id,
+          game: doc.data()
+        }
+        
+        gamesArray.push(obj);
       });
       
       setGames(gamesArray);
@@ -57,7 +62,7 @@ const UserArea = (_) => {
 
           <br /><br />
 
-          { games.map((game, key) => <GameBox key={key} game={game} /> )}
+          { games.map((game, key) => <GameBox key={key} game={game} type="row" /> )}
 
         </div>
 

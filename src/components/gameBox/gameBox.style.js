@@ -1,14 +1,35 @@
 import styled from 'styled-components';
+const tablet_point = 750;
+const tablet = `@media (min-width: ${tablet_point}px)`;
 
 export const GameBoxStyle = styled.div`
 
   display: flex;
   flex-direction: row;
   margin-bottom: 12px;
+  flex-direction: ${({type}) => (type === 'card') ? `column` : `row`};  
+  width: ${({type}) => (type === 'card') ? `50%` : `auto`};  
+
+  ${tablet} {
+    width: ${({type}) => (type === 'card') ? `25%` : `auto`};
+  }
+
+
+  a {
+    color: #3c3c3c;
+    &:hover {
+      color: #3c3c3c;
+      text-decoration: none;
+      border-bottom: none;
+      box-shadow: 0px 10px 12px 5px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 0px 10px 12px 5px rgba(0,0,0,0.5);
+      -moz-box-shadow: 0px 10px 12px 5px rgba(0,0,0,0.5);
+    }
+  }
 
   .GameBoxUA__image {
     background-color: black;
-    width: 30%;
+    width: ${({type}) => (type === 'card') ? `100%` : `30%`};
 
     img {
       width: 100%;
@@ -18,9 +39,9 @@ export const GameBoxStyle = styled.div`
 
   .GameBoxUA__info {
     background-color: #f7f9fa;
-    box-sizing: content-box;
+    box-sizing: border-box;
     padding: 8px;
-    width: 70%;
+    width: ${({type}) => (type === 'card') ? `100%` : `70%`};
     display: flex; 
     justify-content: space-between;
 
