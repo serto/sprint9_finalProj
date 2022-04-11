@@ -38,8 +38,8 @@ const LoginSign = (_) => {
   }
 
   const loginUserSite = () => {
-    console.log(nameUserMail);
-    console.log(nameUserPasw);
+    //console.log(nameUserMail);
+    //console.log(nameUserPasw);
     const userInBBDD = LoginUser(nameUserMail, nameUserPasw);
 
     userInBBDD.then(res => {

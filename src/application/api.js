@@ -14,6 +14,13 @@ export const LoginUser = async (mail, password) => {
   return await getDocs(consUser);
 };
 
+
+//COMPROVAR USUARIO
+export const updateUser = async (id, nameUser, mail, password) => {
+  return await updateDoc(doc(db, 'users', id), { nameUser, mail, password } );
+};
+
+
 //TODOS LOS JUEGOS DE UN USUARIO
 export const getAllGamesOfUser = async (idUser) => {
   const gamesUser = query(collection(db, 'games'), where("idUser", "==", idUser));
@@ -21,20 +28,19 @@ export const getAllGamesOfUser = async (idUser) => {
 };
 
 // NEW GAME
-export const createNewGame = (nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange) => {
-  addDoc(collection(db, 'games'), { nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange });
+export const createNewGame = async (nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange) => {
+  return await addDoc(collection(db, 'games'), { nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange });
 };
 
 // ELIMINAR JUEGO
 export const deleteGameUser = async (idGame) => {
-  console.log(idGame);
   await deleteDoc(doc(db, 'games', idGame));
 };
 
 //TODOS LOS JUEGOS DE UN USUARIO
 export const getGameFromBBDD = async (name) => {
   const arrayToSearch = [name];
-  console.log(arrayToSearch);
+  //console.log(arrayToSearch);
   const games = query(collection(db, 'games'), where("nameGame", '==' , name));
   return await getDocs(games);
 };

@@ -4,15 +4,27 @@ import { HeaderStyle, NavStyle } from './header.style';
 import Search from '../searcher/searcher';
 import { AppContext } from '../../application/provider';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
   const [showMess, setShowMess] = useState(false);
   const [state, setState] = useContext(AppContext);
+  const navigate = useNavigate();
 
   const openMenu = () => {
     setShowMess(showMess ? false : true);
+  }
+
+  const closeSesion = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('userChenjiPassword');
+    localStorage.removeItem('userChenjiMail');
+    localStorage.removeItem('userChenjiId');
+    localStorage.removeItem('userChenjiName');
+    localStorage.removeItem('userChenjiLogged');
+    setState(false);
+    navigate(process.env.PUBLIC_URL + '/');
   }
 
   return (
@@ -32,7 +44,7 @@ const Header = () => {
             { state ? 
                 <>
                   <Link to="/userArea">Área usuario</Link>
-                  <Link to="/">Logout</Link>
+                  <Link to="/" onClick={closeSesion}>Logout</Link>
                 </>
               : 
                 <>
