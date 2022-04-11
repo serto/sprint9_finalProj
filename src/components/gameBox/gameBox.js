@@ -13,8 +13,9 @@ const GameBox = (props) => {
   const typeBox = props.type; 
 
   const deleteGame = () => {
-    console.log(idGame);
+    //console.log(idGame);
     deleteGameUser(idGame);
+    props.funct();
   }
 
   return (

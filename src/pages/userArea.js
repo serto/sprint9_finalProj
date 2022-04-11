@@ -14,11 +14,12 @@ const UserArea = (_) => {
   const [mailUser, setMailUser] = useState(JSON.parse(localStorage.getItem("userChenjiMail")));
   const [pswdUser, setPswdUser] = useState(JSON.parse(localStorage.getItem("userChenjiPassword")));
   const [idUser, setIdUser] = useState(JSON.parse(localStorage.getItem("userChenjiId")));
+  const [gameDeleted, setGameDeleted] = useState(0);
 
   const [games, setGames] = useState([]);
   const [viewMessage, setViewMessage] = useState(false);
 
-  useEffect(() => {
+  const getAllGames = () => {
     const idUser = JSON.parse(localStorage.getItem("userChenjiId"));
     const games = getAllGamesOfUser(idUser);
     const gamesArray = [];
@@ -30,17 +31,18 @@ const UserArea = (_) => {
           id: doc.id,
           game: doc.data()
         }
-        
         gamesArray.push(obj);
       });
-      
       setGames(gamesArray);
-      console.log(gamesArray)
 
     }).catch(error => {
       console.log('error ', error);
     });
+  }
 
+  useEffect(() => {
+
+    getAllGames();
 
   }, []);
 
@@ -60,6 +62,10 @@ const UserArea = (_) => {
 
   }
 
+  const updateListGames = () => {
+    getAllGames();
+  }
+
   return (
     <>
       <Header />
@@ -75,7 +81,7 @@ const UserArea = (_) => {
           <p>Password usuario: <input type='password' value={pswdUser} onChange={e => setPswdUser(e.target.value)}/></p>
           <button onClick={editUser} className="btn">Editar</button>
         </form>
-
+        <br /><br />
         <div>
 
           <h3>Tus juegos</h3>
@@ -84,7 +90,7 @@ const UserArea = (_) => {
 
           <br /><br />
 
-          { games.map((game, key) => <GameBox key={key} game={game} type="row" /> )}
+          { games.map((game, key) => <GameBox key={key} game={game} type="row" funct={updateListGames} /> )}
 
         </div>
 
