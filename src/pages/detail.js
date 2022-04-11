@@ -140,11 +140,14 @@ const Detail = (_) => {
               stores.map((store, key) => <p key={key} className='storeGame'>{store.store.name} : <a href={store.store.domain} target="_blank" rel="noreferrer">{store.store.domain}</a></p>)
             }
 
-
-            <h3 className='t-tSection'>Juegos de usuarios:</h3>
-            <WrapperFlex>
-              { gamesOfUsers.map((game, key) => <GameBoxInDetail key={key} game={game} type="card" /> )}
-            </WrapperFlex>
+            { (gamesOfUsers.length > 0) &&
+              <>
+                <h3 className='t-tSection'>Juegos de usuarios:</h3>
+                <WrapperFlex>
+                  { gamesOfUsers.map((game, key) => <GameBoxInDetail key={key} game={game} type="card" /> )}
+                </WrapperFlex>
+              </> 
+            }
 
 
             <h3 className='t-tSection'>Tags :</h3>
