@@ -6,6 +6,8 @@ import { WrapperContent } from '../assets/styles/styles';
 import Footer from '../components/footer/footer';
 import { OkMessage } from '../components/oksMessage/oksMessage.style';
 
+import { ErrorMessage } from '../components/errorsMessage/errorsMessage.style';
+
 const InsertGame = (_) => {
 
 
@@ -14,26 +16,44 @@ const InsertGame = (_) => {
   const [statusGame, setStatusGame] = useState(0);
   const [statusBox, setStatusBox] = useState(0);
   const [gamesToChange, setGamesToChange] = useState('');
+  const [imageGame, setImageGame] = useState('aa');
   const [viewMessage, setViewMessage] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const [idUser, setIdUser] = useState(JSON.parse(localStorage.getItem("userChenjiId")));
 
+  const changeImagen = (e) => {
+    setImageGame(e.target.files[0]);
+    console.log(imageGame);
+  }
+
   const createGame = (event) => {
     event.preventDefault();
+    //console.log(imageGame);
     
-    const newGame = createNewGame(nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange);
-    
-    newGame.then(res => {
-      setNameGame('');
-      setNamePlatfm('');
-      setStatusGame(0);
-      setStatusBox(0);
-      setGamesToChange('');
-      setViewMessage(true);
-      setTimeout(() => {setViewMessage(false);}, 3000);
-    }).catch( error => {
-      console.error(`error en l inserccio`);
-    });
+    const newGame = createNewGame(nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange, imageGame);
+
+
+    if ( nameGame !=='' && namePlatfm !== '' && gamesToChange !== '' ) {
+ 
+      newGame.then(res => {
+        setNameGame('');
+        setNamePlatfm('');
+        setStatusGame(0);
+        setStatusBox(0);
+        setGamesToChange('');
+        setViewMessage(true);
+        setTimeout(() => {setViewMessage(false);}, 3000);
+      }).catch( error => {
+        console.error(`error en l inserccio`);
+      });
+      setErrorMsg(false);
+
+    } else {
+      setErrorMsg(true);
+    }
+
+
 
   }
 
@@ -47,6 +67,12 @@ const InsertGame = (_) => {
           <h2 className='t-t2'>Inserta tu juego para intercambiar</h2>
 
           <OkMessage viewMessage={viewMessage}>Juego insertado correctamente</OkMessage>
+          <ErrorMessage showMessage={errorMsg}>Todos los campos són obligatorios</ErrorMessage>
+
+          <div>
+            <label>Subir una imagen:</label>
+            <input type="file" name="imagen" onChange={changeImagen} />
+          </div>
 
           <div>
             <label>Nombre del juego</label>

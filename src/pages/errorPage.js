@@ -4,8 +4,8 @@ import React from "react";
 import Header from '../components/header/header';
 import { WrapperBig } from '../assets/styles/styles';
 import Footer from '../components/footer/footer';
-
-import axios from "axios";
+import logoHome from '../assets/images/logoHome.png';
+import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
 
@@ -14,7 +14,16 @@ const ErrorPage = () => {
       <Header />
       <WrapperBig>
 
-        <h1>404. Aqui no hay na'</h1>
+        <div className="centerContent">
+
+          <div className="imageLogoHome">
+            <img src={logoHome} alt="Chenji logo" />
+          </div>
+
+          <h1>404 Error. Está página no existe !!</h1>
+
+          <Link to="/" className="btn">Volver</Link>
+        </div>
 
       </WrapperBig>
       <Footer />

@@ -1,7 +1,7 @@
 
 import firebase, { db } from './firebase';
 import {collection, getDocs, getDoc, query, where, doc,  addDoc, deleteDoc, updateDoc} from "firebase/firestore";
-import { async } from '@firebase/util';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 // ALTA
 export const createNewUser = async (nameUser, mail, password) => {
@@ -27,8 +27,25 @@ export const getAllGamesOfUser = async (idUser) => {
   return await getDocs(gamesUser);
 };
 
+
+
 // NEW GAME
-export const createNewGame = async (nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange) => {
+export const createNewGame = async (nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange, imageGame) => {
+
+  /* // Create a root reference
+  const storage = getStorage();
+  // Create a reference to 'images/mountains.jpg'
+  const mountainImagesRef = ref(storage, imageGame);
+  console.log('oli');
+
+  const bytes = new Uint8Array([0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x2c, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x21]);
+  uploadBytes(mountainImagesRef, bytes).then((snapshot) => {
+    console.log('Uploaded an array!');
+  });
+
+  */
+
+  //return true;
   return await addDoc(collection(db, 'games'), { nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange });
 };
 
