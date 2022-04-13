@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createNewGame } from '../application/api';
+import { createNewGame, uploadImage } from '../application/api';
 
 import Header from '../components/header/header';
 import { WrapperContent } from '../assets/styles/styles';
@@ -16,7 +16,7 @@ const InsertGame = (_) => {
   const [statusGame, setStatusGame] = useState(0);
   const [statusBox, setStatusBox] = useState(0);
   const [gamesToChange, setGamesToChange] = useState('');
-  const [imageGame, setImageGame] = useState('aa');
+  const [imageGame, setImageGame] = useState(null);
   const [viewMessage, setViewMessage] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
 
@@ -24,7 +24,6 @@ const InsertGame = (_) => {
 
   const changeImagen = (e) => {
     setImageGame(e.target.files[0]);
-    console.log(imageGame);
   }
 
   const createGame = (event) => {
@@ -32,7 +31,6 @@ const InsertGame = (_) => {
     //console.log(imageGame);
     
     const newGame = createNewGame(nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange, imageGame);
-
 
     if ( nameGame !=='' && namePlatfm !== '' && gamesToChange !== '' ) {
  
@@ -43,6 +41,7 @@ const InsertGame = (_) => {
         setStatusBox(0);
         setGamesToChange('');
         setViewMessage(true);
+        setImageGame(null)
         setTimeout(() => {setViewMessage(false);}, 3000);
       }).catch( error => {
         console.error(`error en l inserccio`);
@@ -52,8 +51,6 @@ const InsertGame = (_) => {
     } else {
       setErrorMsg(true);
     }
-
-
 
   }
 

@@ -1,7 +1,8 @@
 
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { GameBoxStyle } from './gameBox.style';
+import { getImage } from '../../application/api';
 
 import logoHome from '../../assets/images/logoHome.png';
 
@@ -11,13 +12,30 @@ const GameBoxInDetail = (props) => {
   const game = props.game.game;
   const id = props.game.id;
   const typeBox = props.type; 
+  const [imageName, setImageName] = useState(props.game.game.imageName);
+
+
+  useEffect(() => {
+    if (imageName !== 'empty') {
+      const urlImage = getImage(imageName);
+      urlImage.then(res => {
+        setImageName(res);
+      });
+    }
+
+  }, []);
+
 
   return (
     <GameBoxStyle type={typeBox}>
       
       <Link to="/">
         <div className='GameBoxUA__image'>
-          <img src={logoHome} alt="" />
+          { imageName !== 'empty' ? 
+            <img src={imageName} alt={game.nameGame} />
+            :
+            <img src={logoHome} alt="chenji background" />
+          }
         </div>
 
         <div className='GameBoxUA__info'>

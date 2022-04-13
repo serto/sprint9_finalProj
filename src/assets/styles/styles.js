@@ -156,7 +156,7 @@ export const WrapperColumn = styled.div`
 
 export const WrapperFlex = styled.div`
   display: flex;
-  justify-contente: space-between;
   width: 100%;
   margin: 12px 0;
+  flex-wrap: wrap;
 `;

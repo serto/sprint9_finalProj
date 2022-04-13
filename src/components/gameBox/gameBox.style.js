@@ -5,15 +5,14 @@ const tablet = `@media (min-width: ${tablet_point}px)`;
 export const GameBoxStyle = styled.div`
 
   display: flex;
-  flex-direction: row;
-  margin-bottom: 12px;
+  margin: ${({type}) => (type === 'card') ? `0 2% 12px 0` : `0 0 12px 0`};
   flex-direction: ${({type}) => (type === 'card') ? `column` : `row`};  
   width: ${({type}) => (type === 'card') ? `50%` : `auto`};  
+  box-sizing: border-box;
 
   ${tablet} {
-    width: ${({type}) => (type === 'card') ? `25%` : `auto`};
+    width: ${({type}) => (type === 'card') ? `23%` : `auto`};
   }
-
 
   a {
     color: #3c3c3c;

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 const tablet_point = 750;
 const tablet = `@media (min-width: ${tablet_point}px)`;
-const desktop_big = 1280;
-const desktopBig = `@media (min-width: ${desktop_big}px)`;
 
 export const GameCardStyle = styled.div`
   background-color: #d7dbdf;
@@ -34,6 +32,7 @@ export const GameCardStyle = styled.div`
   }
 
   .imgInfo {
+    background-color: #d7dbdf;
     padding: 8px 4px 16px 4px;
 
     h3 {
@@ -63,7 +62,4 @@ export const GameCardWrapper = styled.div`
     grid-template-columns: repeat(4, 24%);  
     grid-gap: 1%;
   }
-  /*${desktopBig} {
-    grid-template-columns: repeat(6, 14%); 
-  }*/
 `

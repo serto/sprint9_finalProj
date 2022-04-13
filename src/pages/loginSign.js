@@ -9,13 +9,20 @@ import { WrapperContent } from '../assets/styles/styles';
 import Footer from '../components/footer/footer';
 import { ErrorMessage } from '../components/errorsMessage/errorsMessage.style';
 
+
+const validMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+var alphanum = /^[0-9a-zA-Z]+$/;
+
 const LoginSign = (_) => {
 
   const [state, setState] = useContext(AppContext);
 
-  const [newUserName, setnewUserName] = useState(null);
-  const [newUserMail, setNewUserMail] = useState(null);
-  const [newUserPasw, setNewUserPasw] = useState(null);
+  const [newUserName, setnewUserName] = useState('');
+  const [newUserMail, setNewUserMail] = useState('');
+  const [newUserPasw, setNewUserPasw] = useState('');
+  const [newUserNameError, setnewUserNameError] = useState(false);
+  const [newUserMailError, setNewUserMailError] = useState(false);
+  const [newUserPaswError, setNewUserPaswError] = useState(false);
   const [newUserCreated, setNewUserCreatedN] = useState(0);
   const [nameUserMail, setNameUserMail] = useState(null);
   const [nameUserPasw, setNameUserPasw] = useState(null);
@@ -24,17 +31,50 @@ const LoginSign = (_) => {
   const navigate = useNavigate();
 
   const createNewUer = () => {
-    const resultInNewUser = createNewUser(newUserName, newUserMail, newUserPasw);
-    resultInNewUser.then(res => {
-      //console.log(res);
-      localStorage.setItem('userChenjiLogged', JSON.stringify(true));
-      setState(true);
 
-      navigate(process.env.PUBLIC_URL + '/userArea');
-      console.log('user created');
-    }).catch( error => {
-      console.error(`error en la insercion`);
-    });
+    let noErrors = true;
+
+    if ((newUserName != null) || (newUserName.length <= 2)) {
+        noErrors = false;
+        setnewUserNameError(true);
+    } else {
+      setnewUserNameError(false);
+    }
+
+    //validate email
+    var mail_validate = newUserMail.match(validMail);
+    if ((mail_validate == null) || (newUserMail.length < 1)) {
+        noErrors = false;
+        setNewUserMailError(true);
+    } else {
+      setNewUserMailError(false);
+    }
+
+    //validate password
+    var passwd_validate = newUserPasw.match(alphanum);
+    if ((passwd_validate == null) || (newUserPasw <= 2)) {
+        noErrors = false;
+        setNewUserPaswError(true);
+    } else {
+      setNewUserPaswError(false);
+    }
+
+    console.log('no errors : ', noErrors);
+
+
+    if(noErrors === true) {
+      const resultInNewUser = createNewUser(newUserName, newUserMail, newUserPasw);
+      resultInNewUser.then(res => {
+        localStorage.setItem('userChenjiLogged', JSON.stringify(true));
+        setState(true);
+        navigate(process.env.PUBLIC_URL + '/userArea');
+        console.log('user created');
+        noErrors = true;
+      }).catch( error => {
+        console.error(`error en la insercion`);
+      });
+    }
+
   }
 
   const loginUserSite = () => {
@@ -100,14 +140,17 @@ const LoginSign = (_) => {
           <div>
             <label>Nombre de usuario</label>
             <input type="text" onChange={e => setnewUserName(e.target.value)} placeholder="Nombre" />
+            <ErrorMessage showMessage={newUserNameError}>Mínimo de 3 carácteres</ErrorMessage>
           </div>
           <div>
             <label>Mail</label>
             <input type="mail" onChange={e => setNewUserMail(e.target.value)} placeholder="Mail" />
+            <ErrorMessage showMessage={newUserMailError}>Mail incorrectos</ErrorMessage>
           </div>
           <div>
             <label>Password</label>
             <input type="password" onChange={e => setNewUserPasw(e.target.value)} placeholder="Password" />
+            <ErrorMessage showMessage={newUserPaswError}>Ha de contener números y letras</ErrorMessage>
           </div>
           
           <button onClick={createNewUer} className='btn'>New user</button>

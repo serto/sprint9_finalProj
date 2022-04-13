@@ -1,7 +1,7 @@
 
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import { GameBoxStyle } from './gameBox.style';
-import { deleteGameUser } from '../../application/api';
+import { deleteGameUser, getImage } from '../../application/api';
 
 import logoHome from '../../assets/images/logoHome.png';
 
@@ -11,6 +11,7 @@ const GameBox = (props) => {
   const game = props.game.game;
   const idGame = props.game.id;
   const typeBox = props.type; 
+  const [imageName, setImageName] = useState(props.game.game.imageName);
 
   const deleteGame = () => {
     //console.log(idGame);
@@ -18,11 +19,25 @@ const GameBox = (props) => {
     props.funct();
   }
 
+  useEffect(() => {
+    if (imageName !== 'empty') {
+      const urlImage = getImage(imageName);
+      urlImage.then(res => {
+        setImageName(res);
+      });
+    }
+
+  }, []);
+
   return (
     <GameBoxStyle type={typeBox}>
 
       <div className='GameBoxUA__image'>
-        <img src={logoHome} alt="" />
+        { imageName !== 'empty' ? 
+          <img src={imageName} alt={game.nameGame} />
+          :
+          <img src={logoHome} alt="chenji background" />
+        }
       </div>
 
       <div className='GameBoxUA__info'>
