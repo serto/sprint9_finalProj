@@ -33,7 +33,7 @@ export const GameCardStyle = styled.div`
 
   .imgInfo {
     background-color: #d7dbdf;
-    padding: 8px 4px 16px 4px;
+    padding: 16px;
 
     h3 {
       color: #3c3c3c;
@@ -59,7 +59,7 @@ export const GameCardWrapper = styled.div`
   margin-bottom: 32px;
 
   ${tablet} {
-    grid-template-columns: repeat(4, 24%);  
-    grid-gap: 1%;
+    grid-template-columns: repeat(4, 23%);  
+    grid-gap: 2%;
   }
 `

@@ -11,7 +11,6 @@ export const DetailGameStyle = styled.div`
     background-color: #d7dbdf;
     display: flex;
     flex-direction: column;
-    border-bottom: 2px solid #3c3c3c;
 
     ${tablet} {
       flex-direction: row;
@@ -28,9 +27,14 @@ export const DetailGameStyle = styled.div`
       }
     }
 
+    &__info {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
     &__content {
       width: 100%;
-      padding: 8px 12px;
+      padding: 40px;
       box-sizing: border-box;
       
       ${tablet} {

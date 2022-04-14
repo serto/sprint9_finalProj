@@ -40,7 +40,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #22AAB8;
     border: none;
     padding: 12px;
-    margin: 8px 2px 2px 2px;
+    margin: 8px;
     text-decoration: none;
     text-align: center;
     width: 100px;
@@ -89,6 +89,18 @@ export const GlobalStyle = createGlobalStyle`
     ${tablet} {
       width: 48%;
     }
+    div {
+      margin: 4px 0 16px 0;
+    }
+    label {
+      margin: 0 0 8px 0;
+    }
+    input {
+      width: 85%;
+    }
+    .btn {
+      margin: 8px 8px 8px 0;
+    }
   }
 
   //
@@ -132,6 +144,7 @@ export const WrapperBig = styled.div`
   margin: 84px auto 60px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 64px;
 `;
 
 export const WrapperContent = styled.div`

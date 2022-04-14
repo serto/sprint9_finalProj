@@ -5,6 +5,10 @@ export const SearchStyle = styled.div`
   width: 40%;
   position: relative;
 
+  input {
+    margin-bottom: 0;
+  }
+
   button {
     background: url(${lupa});
     background-size: cover;

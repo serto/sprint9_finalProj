@@ -10,7 +10,7 @@ export const HeaderStyle = styled.header`
   position:fixed;
   top: 0;
   width: 100%;
-  padding: 8px;
+  padding: 16px 2%;
   box-sizing: border-box;
 
   .header__wrapp {
@@ -55,15 +55,19 @@ export const NavStyle = styled.nav`
   a {
     color: white; 
     text-decoration: none;
-    margin-bottom: 6px;
     padding-bottom: 4px;
     border-bottom: 1px solid #FFF;
     min-width: 120px;
     text-align: right;
+    margin: 16px 0;
 
     &:hover {
       color: #D13688;
       border-bottom: 1px solid #D13688;
+    }
+
+    &:last-child {
+      margin: 0;
     }
   }
 `
