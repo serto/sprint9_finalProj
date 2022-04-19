@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Header from '../components/header/header';
 import { WrapperColumn } from '../assets/styles/styles';
 import Footer from '../components/footer/footer';
-import { getAllGamesOfUser, updateUser } from '../application/api';
+import { getAllGamesOfUser, updateUser, LoginUser } from '../application/api';
 import { Link } from 'react-router-dom';
 import GameBox from '../components/gameBox/gameBox';
 import { OkMessage } from '../components/oksMessage/oksMessage.style';
@@ -40,17 +40,35 @@ const UserArea = (_) => {
     });
   }
 
+
+  useEffect(() => {
+
+    if(idUser=== null) {
+
+      const userInBBDD = LoginUser(mailUser, pswdUser);
+
+      userInBBDD.then(res => {
+        res.forEach((doc) => {
+          setIdUser(doc.id);
+          localStorage.setItem('userChenjiId', JSON.stringify(doc.id));
+        })
+      });
+    }
+  }, []);
+
   useEffect(() => {
 
     getAllGames();
 
   }, []);
 
+
   const editUser = (e) => {
     e.preventDefault();
-    const updateUser = updateUser(idUser, nameUser, mailUser, pswdUser);
+
+    const updateUserChenji = updateUser(idUser, nameUser, mailUser, pswdUser);
     
-    updateUser.then(res => {
+    updateUserChenji.then(res => {
       localStorage.setItem('userChenjiMail', JSON.stringify(mailUser));
       localStorage.setItem('userChenjiName', JSON.stringify(nameUser));
       localStorage.setItem('userChenjiPassword', JSON.stringify(pswdUser));
@@ -75,12 +93,23 @@ const UserArea = (_) => {
 
         <OkMessage viewMessage={viewMessage}>Usuario editado correctamente</OkMessage>
 
-        <form>
-          <p>Nombre usuario: <input type='text' value={nameUser} onChange={e => setNameUser(e.target.value)} /></p>
-          <p>Mail usuario: <input type='text' value={mailUser} onChange={e => setMailUser(e.target.value)} /></p>
-          <p>Password usuario: <input type='password' value={pswdUser} onChange={e => setPswdUser(e.target.value)}/></p>
+        <form className='boxForm'>
+          <div>
+            <label>Nombre usuario: </label>
+            <input type='text' value={nameUser} onChange={e => setNameUser(e.target.value)} />
+          </div>
+          <div>
+            <label>Mail usuario: </label>
+            <input type='text' value={mailUser} onChange={e => setMailUser(e.target.value)} />
+          </div>
+          <div>
+            <label>Password usuario: </label>
+            <input type='password' value={pswdUser} onChange={e => setPswdUser(e.target.value)}/>
+          </div>
+          
           <button onClick={editUser} className="btn">Editar</button>
         </form>
+
         <br /><br />
         <div>
 

@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
   .t-tSection {
     margin: 32px 0 0 0;
     font-size: 1rem;
-    padding: 0 0 4px 0;
+    padding: 0 0 8px 0;
   }
   .t-tText {
     font-size: 0.9rem;
@@ -56,6 +56,7 @@ export const GlobalStyle = createGlobalStyle`
 
     &.btn__big {
       width: auto;
+      margin: 8px 8px 8px 0;
     }
 
     &.btn--danger {
@@ -100,6 +101,32 @@ export const GlobalStyle = createGlobalStyle`
     }
     .btn {
       margin: 8px 8px 8px 0;
+    }
+  }
+
+  .boxForm {
+    width: 100%;
+    
+    ${tablet} {
+      width: 65%;
+    }
+    
+    div {
+      margin: 4px 0 16px 0;
+    }
+    label {
+      margin: 0 0 8px 0;
+    }
+    input {
+      width: 100%;
+    }
+    .btn {
+      margin: 8px 8px 8px 0;
+    }
+
+    select {
+      border-radius: 8px;
+      padding: 8px;
     }
   }
 

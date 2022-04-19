@@ -59,7 +59,7 @@ export const NavStyle = styled.nav`
     border-bottom: 1px solid #FFF;
     min-width: 120px;
     text-align: right;
-    margin: 16px 0;
+    margin: 8px 0;
 
     &:hover {
       color: #D13688;
@@ -67,7 +67,7 @@ export const NavStyle = styled.nav`
     }
 
     &:last-child {
-      margin: 0;
+      margin: 8px 0 0 0;
     }
   }
 `

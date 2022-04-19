@@ -7,7 +7,7 @@ export const GameBoxStyle = styled.div`
   display: flex;
   margin: ${({type}) => (type === 'card') ? `0 2% 12px 0` : `0 0 12px 0`};
   flex-direction: ${({type}) => (type === 'card') ? `column` : `row`};  
-  width: ${({type}) => (type === 'card') ? `50%` : `auto`};  
+  width: ${({type}) => (type === 'card') ? `48%` : `auto`};  
   box-sizing: border-box;
 
   ${tablet} {
@@ -29,28 +29,31 @@ export const GameBoxStyle = styled.div`
   .GameBoxUA__image {
     background-color: black;
     width: ${({type}) => (type === 'card') ? `100%` : `30%`};
+    height: ${({type}) => (type === 'card') ? `170px` : `220px`};
 
     img {
       width: 100%;
-      height: auto;
+      height: ${({type}) => (type === 'card') ? `100%` : `220px`};
+      object-fit: contain;
+      object-position: center;
     }
   }
 
   .GameBoxUA__info {
     background-color: #f7f9fa;
     box-sizing: border-box;
-    padding: 8px;
+    padding: 16px 24px;
     width: ${({type}) => (type === 'card') ? `100%` : `70%`};
     display: flex; 
     justify-content: space-between;
 
     h4 {
-      margin: 0 0 4px 0;
+      margin: 0 0 16px 0;
       padding: 0;
       font-size: 0.9rem;
     }
     p {
-      margin: 0 0 4px 0;
+      margin: 0 0 8px 0;
       padding: 0;
       font-size: 0.8rem;
     }

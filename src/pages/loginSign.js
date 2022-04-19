@@ -33,11 +33,12 @@ const LoginSign = (_) => {
   const createNewUer = () => {
 
     let noErrors = true;
-
-    if ((newUserName != null) || (newUserName.length <= 2)) {
+  
+    if (newUserName != null) {
         noErrors = false;
         setnewUserNameError(true);
     } else {
+      noErrors = true;
       setnewUserNameError(false);
     }
 
@@ -47,6 +48,7 @@ const LoginSign = (_) => {
         noErrors = false;
         setNewUserMailError(true);
     } else {
+      noErrors = true;
       setNewUserMailError(false);
     }
 
@@ -56,6 +58,7 @@ const LoginSign = (_) => {
         noErrors = false;
         setNewUserPaswError(true);
     } else {
+      noErrors = true;
       setNewUserPaswError(false);
     }
 
@@ -65,7 +68,12 @@ const LoginSign = (_) => {
     if(noErrors === true) {
       const resultInNewUser = createNewUser(newUserName, newUserMail, newUserPasw);
       resultInNewUser.then(res => {
+        console.log(res);
+        console.log(res.doc);
         localStorage.setItem('userChenjiLogged', JSON.stringify(true));
+        localStorage.setItem('userChenjiName', JSON.stringify(newUserName));
+        localStorage.setItem('userChenjiMail', JSON.stringify(newUserMail));
+        localStorage.setItem('userChenjiPassword', JSON.stringify(newUserPasw));
         setState(true);
         navigate(process.env.PUBLIC_URL + '/userArea');
         console.log('user created');

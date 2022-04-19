@@ -59,7 +59,7 @@ const InsertGame = (_) => {
       <Header />
       <WrapperContent>
 
-        <form>
+        <form className='boxForm'>
 
           <h2 className='t-t2'>Inserta tu juego para intercambiar</h2>
 
@@ -148,8 +148,7 @@ const InsertGame = (_) => {
               <option value="10">10</option>
             </select>
           </div>
-
-          <br /> <br />
+          <br />
           <button onClick={createGame} className='btn'>Nuevo juego</button>
 
         </form>

@@ -6,6 +6,7 @@ export const DetailGameStyle = styled.div`
 
   display: flex;
   flex-direction: column;
+  width:100%;
 
   .detail {
     background-color: #d7dbdf;
