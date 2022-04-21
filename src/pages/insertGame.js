@@ -1,22 +1,57 @@
 import { useState } from 'react';
-import { createNewGame } from '../application/api';
+import { createNewGame, uploadImage } from '../application/api';
 
 import Header from '../components/header/header';
 import { WrapperContent } from '../assets/styles/styles';
+import Footer from '../components/footer/footer';
+import { OkMessage } from '../components/oksMessage/oksMessage.style';
+
+import { ErrorMessage } from '../components/errorsMessage/errorsMessage.style';
 
 const InsertGame = (_) => {
 
 
-  const [nameGame, setNameGame] = useState(null);
-  const [namePlatfm, setNamePlatfm] = useState(null);
+  const [nameGame, setNameGame] = useState('');
+  const [namePlatfm, setNamePlatfm] = useState('');
   const [statusGame, setStatusGame] = useState(0);
   const [statusBox, setStatusBox] = useState(0);
+  const [gamesToChange, setGamesToChange] = useState('');
+  const [imageGame, setImageGame] = useState(null);
+  const [viewMessage, setViewMessage] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
 
-  const idUser = 'qbLVx0j0SBvu9Nv31aJI';
+  const [idUser, setIdUser] = useState(JSON.parse(localStorage.getItem("userChenjiId")));
+
+  const changeImagen = (e) => {
+    setImageGame(e.target.files[0]);
+  }
 
   const createGame = (event) => {
     event.preventDefault();
-    createNewGame(nameGame, namePlatfm, statusGame, statusBox, idUser);
+    //console.log(imageGame);
+    
+    const newGame = createNewGame(nameGame, namePlatfm, statusGame, statusBox, idUser, gamesToChange, imageGame);
+
+    if ( nameGame !=='' && namePlatfm !== '' && gamesToChange !== '' ) {
+ 
+      newGame.then(res => {
+        setNameGame('');
+        setNamePlatfm('');
+        setStatusGame(0);
+        setStatusBox(0);
+        setGamesToChange('');
+        setViewMessage(true);
+        setImageGame(null)
+        setTimeout(() => {setViewMessage(false);}, 3000);
+      }).catch( error => {
+        console.error(`error en l inserccio`);
+      });
+      setErrorMsg(false);
+
+    } else {
+      setErrorMsg(true);
+    }
+
   }
 
   return (
@@ -24,17 +59,25 @@ const InsertGame = (_) => {
       <Header />
       <WrapperContent>
 
+        <form className='boxForm'>
 
-        <form>
+          <h2 className='t-t2'>Inserta tu juego para intercambiar</h2>
 
-          <h2 className='t-t2'>Inserta tu juego</h2>
+          <OkMessage viewMessage={viewMessage}>Juego insertado correctamente</OkMessage>
+          <ErrorMessage showMessage={errorMsg}>Todos los campos són obligatorios</ErrorMessage>
+
+          <div>
+            <label>Subir una imagen:</label>
+            <input type="file" name="imagen" onChange={changeImagen} />
+          </div>
 
           <div>
             <label>Nombre del juego</label>
             <input
               type="text"
               onChange={e => setNameGame(e.target.value)}
-              placeholder="God of War, Fifa 18, Uncharted ..." />
+              value={nameGame}
+              placeholder="God of War, FIFA 20, Uncharted ..." />
           </div>
 
           <div>
@@ -42,7 +85,20 @@ const InsertGame = (_) => {
             <input
               type="text"
               onChange={e => setNamePlatfm(e.target.value)} 
+              value={namePlatfm}
               placeholder="Ps3, Ps4, Xbox, Snes ..." />
+          </div>
+
+          <div>
+            <label>Se cambia por:</label>
+
+            <input
+              type="text"
+              placeholder="FIFA 21, Tomb Raider ...."
+              onChange={e => setGamesToChange(e.target.value)}
+              value={gamesToChange}
+            />
+
           </div>
 
           <p>Por favor, Indica el estado del juego y la caja, siendo 10 el máximo y 0 el mínimo.  </p>
@@ -54,6 +110,7 @@ const InsertGame = (_) => {
               name="status-game"
               onChange={e => setStatusGame(e.target.value)}
               id="status-game"
+              value={statusGame}
             >
               <option value="0">0</option>
               <option value="1">1</option> 
@@ -76,6 +133,7 @@ const InsertGame = (_) => {
               name="status-box"
               onChange={e => setStatusBox(e.target.value)}
               id="status-box"
+              value={statusBox}
             >
               <option value="0">0</option>
               <option value="1">1</option> 
@@ -90,13 +148,14 @@ const InsertGame = (_) => {
               <option value="10">10</option>
             </select>
           </div>
-
-          <button onClick={createGame} className='btn'>Enter</button>
+          <br />
+          <button onClick={createGame} className='btn'>Nuevo juego</button>
 
         </form>
 
 
       </WrapperContent>
+      <Footer />
     </>
   );
 

@@ -11,6 +11,7 @@ export const CookiesMessageStyle = styled.div`
 
   p {
     text-align: center;
+    font-size: 0.8rem;
   }
 
   .cookies__close {
@@ -18,5 +19,23 @@ export const CookiesMessageStyle = styled.div`
     top: 0;
     right: 4px;
     cursor: pointer;
+  }
+
+  span, a {
+    margin: 0 4px;
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
+    background-color: #89BD4E;
+    border: none;
+    padding: 4px;
+    text-decoration: none;
+    border-radius: 8px;
+
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+      text-decoration: none;
+    }
   }
 `

@@ -10,7 +10,7 @@ const GameCard = (props) => {
 
   return (
       <GameCardStyle>
-        <Link to='/' >
+        <Link to={`/detail/${game.slug}`} >
           <div className='imgCard'>
             <img src={game.background_image} alt={game.name} />
           </div>
