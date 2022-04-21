@@ -35,6 +35,7 @@ export const CookiesMessageStyle = styled.div`
     &:hover {
       opacity: 0.8;
       cursor: pointer;
+      text-decoration: none;
     }
   }
 `

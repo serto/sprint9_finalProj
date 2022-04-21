@@ -17,7 +17,7 @@ const LoginSign = (_) => {
 
   const [state, setState] = useContext(AppContext);
 
-  const [newUserName, setnewUserName] = useState('');
+  const [newUserName, setNewUserName] = useState('');
   const [newUserMail, setNewUserMail] = useState('');
   const [newUserPasw, setNewUserPasw] = useState('');
   const [newUserNameError, setnewUserNameError] = useState(false);
@@ -32,44 +32,44 @@ const LoginSign = (_) => {
 
   const createNewUer = () => {
 
-    let noErrors = true;
+    let noErrorName = true;
+    let noErrorMail = true;
+    let noErrorPass = true;
   
-    if (newUserName != null) {
-        noErrors = false;
+    if (newUserName === '') {
+        noErrorName = false;
         setnewUserNameError(true);
     } else {
-      noErrors = true;
+      noErrorName = true;
       setnewUserNameError(false);
     }
 
     //validate email
     var mail_validate = newUserMail.match(validMail);
     if ((mail_validate == null) || (newUserMail.length < 1)) {
-        noErrors = false;
+        noErrorMail = false;
         setNewUserMailError(true);
     } else {
-      noErrors = true;
+      noErrorMail = true;
       setNewUserMailError(false);
     }
 
     //validate password
     var passwd_validate = newUserPasw.match(alphanum);
     if ((passwd_validate == null) || (newUserPasw <= 2)) {
-        noErrors = false;
+        noErrorPass = false;
         setNewUserPaswError(true);
     } else {
-      noErrors = true;
+      noErrorPass = true;
       setNewUserPaswError(false);
     }
 
-    console.log('no errors : ', noErrors);
-
-
-    if(noErrors === true) {
+   
+    if(noErrorName && noErrorMail && noErrorPass) {
       const resultInNewUser = createNewUser(newUserName, newUserMail, newUserPasw);
       resultInNewUser.then(res => {
-        console.log(res);
-        console.log(res.doc);
+        //console.log(res);
+        //console.log(res.doc);
         localStorage.setItem('userChenjiLogged', JSON.stringify(true));
         localStorage.setItem('userChenjiName', JSON.stringify(newUserName));
         localStorage.setItem('userChenjiMail', JSON.stringify(newUserMail));
@@ -77,7 +77,9 @@ const LoginSign = (_) => {
         setState(true);
         navigate(process.env.PUBLIC_URL + '/userArea');
         console.log('user created');
-        noErrors = true;
+        noErrorName = true;
+        noErrorMail = true;
+        noErrorPass = true;
       }).catch( error => {
         console.error(`error en la insercion`);
       });
@@ -147,7 +149,7 @@ const LoginSign = (_) => {
           <p>Registrate para poder intercambiar videojuegos !</p>
           <div>
             <label>Nombre de usuario</label>
-            <input type="text" onChange={e => setnewUserName(e.target.value)} placeholder="Nombre" />
+            <input type="text" onChange={e => setNewUserName(e.target.value)} placeholder="Nombre" />
             <ErrorMessage showMessage={newUserNameError}>Mínimo de 3 carácteres</ErrorMessage>
           </div>
           <div>
